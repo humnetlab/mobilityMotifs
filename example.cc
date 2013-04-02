@@ -158,7 +158,7 @@ int main(){
     }
     int countersolutions = 0;
     char filename[100];
-    sprintf(filename,"data_example.dat");
+    sprintf(filename,"example_data.dat");
     ifstream Data(filename);
     if(Data.good()){cout << "Good" << endl;}else{cout << "Bad" << endl;cin >> filename;}
     for(int i = 0;i<10000;i++){
@@ -529,12 +529,14 @@ p
             }
             sum = 0;
             counter = 0;
-       }
-       if(id > 180){
-           times[counter] = id - 180;
-           locationsID[counter] = locationID;
-           counter++;
-       }
+        }
+	else{
+            if(id > 180){
+                times[counter] = id - 180;
+                locationsID[counter] = locationID;
+                counter++;
+	    }
+        }
     }
     ofstream out("unknowndis.dat");
     for(int i = 0;i < 48;i++){

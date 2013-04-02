@@ -426,7 +426,7 @@ int main(){
         }
     }
     char filename1[100];
-    sprintf(filename1,"cluster_motifs_%d.dat",numbernodes);
+    sprintf(filename1,"motifs_%d.dat",numbernodes);
     ofstream out(filename1);
     for(int i = 0;i < refnumbernetworks;i++){
         cout << i << " " << countrefnetworks[sortlist[i]][0] << " " << double(countrefnetworks[sortlist[i]][0])/double(numbercountrefnetworks[0]) << ":" << endl;

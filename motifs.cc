@@ -121,8 +121,8 @@ int main(){
         indegree[i] = 0;
         outdegree[i] = 0;
     }
-    int numberrealizations = 0;
-    int id;int locationID = 0;
+    int id;
+    int locationID = 0;
     int counterid = -1;
     int counter = 0;
     int lastid = -1;
@@ -132,9 +132,11 @@ int main(){
     while(!Data.eof()){
         Data >> id;Data >> locationID;Data >> xcor1;Data >> ycor1;
         if(id != lastid){
+/*****  Calculating motif if the number of locations are equal to the input parameter *****/
             if(counterid > -1){
                 degreedis[hnumbernodes]++;
                 if(hnumbernodes == numbernodes){
+/*****  Converting the data into an adjacency matrix  *****/                                
                     for(int i = 0;i < numbernodes;i++){
                         for(int j = 0;j < numbernodes;j++){
                             hmatrix[i][j] = false;
@@ -159,6 +161,7 @@ int main(){
                             lastlocID++;
                         }
                     }
+/*****  Calculating the distances the person traveled  *****/                                
                     double hdis = 0;
                     for(int i = 0;i < numbernodes;i++){
                         for(int j = i+1;j < numbernodes;j++){
@@ -176,11 +179,10 @@ int main(){
                     for(int i = 1;i < counter;i++){
                         if(locations1[i] != locations1[i - 1]){
                             hmatrix[locations1[i - 1]][locations1[i]] = true;
-//                            hdis = cos((ycor[1][locations1[i]]+ycor[1][locations1[i - 1]])*0.008727)*(xcor[1][locations1[i]]-xcor[1][locations1[i - 1]])*cos((ycor[1][locations1[i]]+ycor[1][locations1[i - 1]])*0.008727)*(xcor[1][locations1[i]]-xcor[1][locations1[i - 1]]) + (ycor[1][locations1[i]]-ycor[1][locations1[i - 1]])*(ycor[1][locations1[i]]-ycor[1][locations1[i - 1]]);
-//                            hdis = (xcor[1][locations1[i - 1]] - xcor[1][locations1[i]])*(xcor[1][locations1[i - 1]] - xcor[1][locations1[i]]) + (ycor[1][locations1[i - 1]] - ycor[1][locations1[i]])*(ycor[1][locations1[i - 1]] - ycor[1][locations1[i]]);
                             distance = distance + distances[locations1[i - 1]][locations1[i]];
                         }
                     }
+/*****  Calculating the minimum distances a person has to travel visiting the same locations  *****/
                     mindistance = distance;
                     if(distance > 0){
                         permute1(test,1,numbernodes);
@@ -197,6 +199,8 @@ int main(){
                            }
                         }
                     }
+                    
+/*****  Ordering adjacency matrix  *****/
                     int maxin;
                     int maxout;
                     int maxID;
@@ -241,6 +245,7 @@ int main(){
                     }
 
                     if(hnumbernodes == numbernodes){
+/*****  Calculating if the motif is new  *****/
                         numbercountrefnetworks[0]++;
                         for(int i = 0;i < hnumbernodes;i++){
                             for(int j = 0;j < hnumbernodes;j++){
@@ -271,6 +276,7 @@ int main(){
                                 }
                             }
                         }
+/*****  Include the motif as a new reference motif  *****/
                         if(show){
                             for(int j = 0;j < numbernodes;j++){
                                 refoutdegree[refnumbernetworks][j] = outdegree[j];
@@ -297,6 +303,7 @@ int main(){
                     }
                 }
             }
+/*****  Reset for new data  *****/
             hnumbernodes = 0;
             counterid++;
             for(int i = 0;i < 58647;i++){
@@ -307,6 +314,7 @@ int main(){
             }
             counter = 0;
         }
+/*****  Converting input data in locationIDs  *****/
         for(int j = 0; j < counter;j++){
             if(xcor[0][j] == xcor1 && ycor[0][j] == ycor1){
                 locationID = locations[j];
