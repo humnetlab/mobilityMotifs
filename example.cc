@@ -512,7 +512,7 @@ int main(){
 //	    cin >> hnumbernodes;
             hnumbernodes = 0;
             counterid++;
-p
+            
             for(int j = 0;j < 3506;j++){
                 if(visits1[j] > 0){
                     for(int k = 0;k < 156;k++){
