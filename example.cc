@@ -158,7 +158,7 @@ int main(){
     }
     int countersolutions = 0;
     char filename[100];
-    sprintf(filename,"example_data.dat");
+    sprintf(filename,"data_example.dat");
     ifstream Data(filename);
     if(Data.good()){cout << "Good" << endl;}else{cout << "Bad" << endl;cin >> filename;}
     for(int i = 0;i<10000;i++){
