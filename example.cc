@@ -3,7 +3,7 @@
 #include <fstream>
 #include <math.h>
 
-// Compilation: g++ network_properties2.cc ../fftw++.cc -lfftw3 -O3 -o Network_properties2
+// Compilation: g++ example.cc -O3 -o example_motifs
 
 using namespace std;
 const double pi = 3.14159;
